@@ -1,0 +1,15 @@
+<h2>Pure <span class="doctrine-color">OOP API</span></h2>
+
+<pre><code data-trim>
+$user = $entityManager->find('User', 123);
+
+$entityManager->remove($user);
+$entityManager->persist($thing);
+
+$entityManager->flush();
+</code></pre>
+
+<pre><code data-trim>
+$user        = $repository->find(123);
+$activeUsers = $repository->findBy(['active' => true]);
+</code></pre>

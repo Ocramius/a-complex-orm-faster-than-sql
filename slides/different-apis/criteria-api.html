@@ -1,0 +1,11 @@
+<h2>Criteria <span class="doctrine-color">API</span></h2>
+
+<pre><code data-trim>
+$adultBirthDate = new DateTime('-18 years');
+
+$adultsCriteria = new Doctrine\Common\Collections\Criteria();
+
+$adultsCriteria->andWhere($criteria->expr()->lte('birthDate', $adultBirthDate));
+
+$adults = $repository->matching($criteria);
+</code></pre>

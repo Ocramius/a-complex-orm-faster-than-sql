@@ -1,0 +1,20 @@
+<h2><span class="doctrine-color"><abbr title="Doctrine Query Language">DQL</abbr>: Doctrine Query Language</span></h2>
+
+<pre><code data-trim>
+$users = $entityManager->createQuery(
+    <<<'DQL'
+SELECT
+    u
+FROM
+    Users u
+JOIN
+    u.address a
+JOIN
+    a.city c
+WHERE
+    c.name = :cityName
+'DQL'
+    )
+    ->setParameter('cityName', 'Brno)
+    ->getResult();
+</code></pre>
