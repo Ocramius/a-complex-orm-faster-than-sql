@@ -22,5 +22,6 @@
     "designing-with-the-orm/not-a-ddd-talk.html",
     "designing-with-the-orm/more-on-ddd.html",
 
-    "orm-api/entity-manager-api.html"
+    "orm-api/entity-manager-api.html",
+    "orm-api/entity-manager-api-pictured.html"
 ]
