@@ -17,6 +17,7 @@
     "designing-with-the-orm/popo-explained.html",
     "designing-with-the-orm/popo-doctrine2-deals-with-it.html",
     "designing-with-the-orm/popo-hydration.html",
-    "designing-with-the-orm/popo-extraction.html"
-    "designing-with-the-orm/popo-enables-ddd.html"
+    "designing-with-the-orm/popo-extraction.html",
+    "designing-with-the-orm/popo-enables-ddd.html",
+    "designing-with-the-orm/not-a-ddd-talk.html"
 ]
