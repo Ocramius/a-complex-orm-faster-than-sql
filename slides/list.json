@@ -70,6 +70,7 @@
 
     "caching/caching-intro.html",
     "caching/caching-at-the-core-of-design.html",
+    "caching/4-caches.html",
 
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",
