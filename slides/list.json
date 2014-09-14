@@ -4,5 +4,12 @@
     "introduction/roave.html",
     "introduction/i-contribute-to.html",
     "introduction/thanks.html",
-    "introduction/questions.html"
+    "introduction/questions.html",
+    "introduction/are-you-fucking-kidding-me.html",
+    "introduction/just-kidding.html",
+
+    "doctrine-project/wth-is-doctrine.html",
+    "doctrine-project/doctrine-project.html",
+    "doctrine-project/wth-is-doctrine-orm.html",
+    "doctrine-project/doctrine-2-orm.html"
 ]
