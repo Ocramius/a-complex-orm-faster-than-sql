@@ -42,5 +42,8 @@
     "orm-api/example-persisting-an-invoice/4-save-line-items.html",
     "orm-api/example-persisting-an-invoice/order-of-operations-leads-to-bugs.html",
     "orm-api/example-persisting-an-invoice/with-the-orm.html",
-    "orm-api/transaction-safety.html"
+    "orm-api/transaction-safety.html",
+
+    "orms-are-slow/orms-are-slow.html",
+    "orms-are-slow/there-i-said-it.html"
 ]
