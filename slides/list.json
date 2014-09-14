@@ -47,5 +47,7 @@
     "orms-are-slow/orms-are-slow.html",
     "orms-are-slow/there-i-said-it.html",
     "orms-are-slow/or-are-the-developers-not-rtfm.html",
-    "orms-are-slow/abstraction-comes-at-a-cost.html"
+    "orms-are-slow/abstraction-comes-at-a-cost.html",
+    "orms-are-slow/orms-are-leaky-abstractions.html",
+    "orms-are-slow/orms-are-leaky-abstractions-quote.html"
 ]
