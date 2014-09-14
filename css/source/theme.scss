@@ -82,3 +82,30 @@ footer.tiny {
 code {
   color: orangered;
 }
+
+.zf-color {
+  color: #68B604;
+}
+
+.doctrine-color {
+  color: #FC6A31;
+}
+
+.doctrine-bg {
+  background-color: #040E27;
+}
+
+.reveal section img {
+  border: 0;
+  background: none;
+  box-shadow: 0 0 #000;
+}
+
+.reveal pre {
+  width: 100%;
+  font-size: 0.68em;
+}
+
+.reveal pre code {
+  max-height: 600px;
+}
