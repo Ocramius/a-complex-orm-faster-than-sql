@@ -1,4 +1,4 @@
-<h2>2 - save the <span class="zf-color">User</span></h2>
+<h2>2 - save the <span class="zf-color">Line Items</span></h2>
 <pre><code data-trim>
 SET @invoice_id = LAST_INSERT_ID();
 INSERT INTO line_item (invoice_id, product_id) VALUES (@invoice_id, 123);
