@@ -71,6 +71,7 @@
     "caching/caching-intro.html",
     "caching/caching-at-the-core-of-design.html",
     "caching/4-caches.html",
+    "caching/metadata-cache.html",
 
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",
