@@ -62,5 +62,7 @@
     "different-apis/dql.html",
     "different-apis/native-sql.html",
 
+    "caching/caching-at-the-core-of-design.html",
+
     "orms-are-slow/orms-dont-kill-your-db-developers-do.html"
 ]
