@@ -70,5 +70,7 @@
 
     "caching/caching-at-the-core-of-design.html",
 
+    "bad-examples/findall-filtering.html",
+
     "orms-are-slow/orms-dont-kill-your-db-developers-do.html"
 ]
