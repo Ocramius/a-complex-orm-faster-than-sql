@@ -11,5 +11,11 @@
     "doctrine-project/wth-is-doctrine.html",
     "doctrine-project/doctrine-project.html",
     "doctrine-project/wth-is-doctrine-orm.html",
-    "doctrine-project/doctrine-2-orm.html"
+    "doctrine-project/doctrine-2-orm.html",
+
+    "designing-with-the-orm/popo.html",
+    "designing-with-the-orm/popo-explained.html",
+    "designing-with-the-orm/popo-doctrine-2-deals-with-it.html",
+    "designing-with-the-orm/popo-hydration.html",
+    "designing-with-the-orm/popo-extraction.html"
 ]
