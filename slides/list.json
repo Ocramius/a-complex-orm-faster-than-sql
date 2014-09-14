@@ -60,5 +60,6 @@
     "different-apis/pure-oop-api.html",
     "different-apis/pure-oop-traversal.html",
     "different-apis/criteria-api.html",
-    "different-apis/dql.html"
+    "different-apis/dql.html",
+    "different-apis/native-sql.html"
 ]
