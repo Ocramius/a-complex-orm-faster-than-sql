@@ -24,6 +24,6 @@
 
     "orm-api/entity-manager-api.html",
     "orm-api/entity-manager-api-pictured.html",
-    "orm-api/persisting-an-invoice.html",
-    "orm-api/persisting-an-invoice-data-structure.html"
+    "orm-api/example-persisting-an-invoice/persisting-an-invoice.html",
+    "orm-api/example-persisting-an-invoice/invoice-data-structure.html"
 ]
