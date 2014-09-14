@@ -29,5 +29,6 @@
     "orm-api/example-persisting-an-invoice/1-save-address.html",
     "orm-api/example-persisting-an-invoice/2-save-user.html",
     "orm-api/example-persisting-an-invoice/3-save-invoice.html",
-    "orm-api/example-persisting-an-invoice/4-save-line-items.html"
+    "orm-api/example-persisting-an-invoice/4-save-line-items.html",
+    "orm-api/example-persisting-an-invoice/with-the-orm.html"
 ]

@@ -1,0 +1,20 @@
+<h2>Saving an Invoice with the <span class="doctrine-color">ORM</span></h2>
+<pre><code data-trim>
+$user = new User(
+    'Ocramius',
+    'Marco',
+    'Pivetta',
+    new Address('Zemědělská 1', 'Brno', '61300', 'CZ')
+);
+
+$product1 = $entityManager->find('Product', 123);
+$product2 = $entityManager->find('Product', 456);
+
+$invoice = new Invoice($user, [
+    new LineItem($product1),
+    new LineItem($product2)
+]);
+
+$entityManager->persist($invoice);
+$entityManager->flush();
+</code></pre>
