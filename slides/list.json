@@ -55,11 +55,12 @@
     "orms-are-slow/php-double-claw.html",
     "orms-are-slow/context.html",
     "orms-are-slow/context-oop-api.html",
-    "orms-are-slow/orms-dont-kill-your-db-developers-do.html",
 
     "different-apis/pure-oop-api.html",
     "different-apis/pure-oop-traversal.html",
     "different-apis/criteria-api.html",
     "different-apis/dql.html",
-    "different-apis/native-sql.html"
+    "different-apis/native-sql.html",
+
+    "orms-are-slow/orms-dont-kill-your-db-developers-do.html"
 ]
