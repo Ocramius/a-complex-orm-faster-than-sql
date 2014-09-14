@@ -36,5 +36,6 @@
     "orm-api/example-persisting-an-invoice/3-save-invoice.html",
     "orm-api/example-persisting-an-invoice/4-save-line-items.html",
     "orm-api/example-persisting-an-invoice/order-of-operations-leads-to-bugs.html",
-    "orm-api/example-persisting-an-invoice/with-the-orm.html"
+    "orm-api/example-persisting-an-invoice/with-the-orm.html",
+    "orm-api/transaction-safety.html"
 ]
