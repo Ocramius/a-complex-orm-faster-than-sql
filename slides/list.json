@@ -15,6 +15,8 @@
 
     "designing-with-the-orm/popo.html",
     "designing-with-the-orm/popo-explained.html",
+    "designing-with-the-orm/popo-domain.html",
+    "designing-with-the-orm/popo-domain-is-yours.html",
     "designing-with-the-orm/popo-doctrine2-deals-with-it.html",
     "designing-with-the-orm/popo-hydration.html",
     "designing-with-the-orm/popo-extraction.html",
