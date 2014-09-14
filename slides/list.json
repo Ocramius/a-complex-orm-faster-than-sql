@@ -65,6 +65,7 @@
     "rules-of-the-orm/everything-you-load-is-kept-in-memory.html",
     "rules-of-the-orm/everything-you-load-is-kept-in-memory-image.html",
     "rules-of-the-orm/everything-you-flush-checks-the-entire-uow.html",
+    "rules-of-the-orm/everything-you-flush-checks-the-entire-uow-image.html",
 
     "caching/caching-at-the-core-of-design.html",
 
