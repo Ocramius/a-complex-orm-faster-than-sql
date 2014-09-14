@@ -27,5 +27,6 @@
     "orm-api/example-persisting-an-invoice/persisting-an-invoice.html",
     "orm-api/example-persisting-an-invoice/invoice-data-structure.html",
     "orm-api/example-persisting-an-invoice/1-save-address.html",
-    "orm-api/example-persisting-an-invoice/2-save-user.html"
+    "orm-api/example-persisting-an-invoice/2-save-user.html",
+    "orm-api/example-persisting-an-invoice/3-save-invoice.html"
 ]
