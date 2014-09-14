@@ -62,6 +62,10 @@
     "different-apis/dql.html",
     "different-apis/native-sql.html",
 
+    "rules-of-the-orm/everything-you-load-is-kept-in-memory.html",
+    "rules-of-the-orm/everything-you-load-is-kept-in-memory-image.html",
+    "rules-of-the-orm/everything-you-flush-checks-the-entire-uow.html",
+
     "caching/caching-at-the-core-of-design.html",
 
     "orms-are-slow/orms-dont-kill-your-db-developers-do.html"
