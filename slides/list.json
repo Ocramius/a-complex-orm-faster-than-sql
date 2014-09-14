@@ -1,12 +1,7 @@
 [
     "introduction/hi.html",
     "introduction/my-name-is-marco.html",
-    "introduction/thanks.html",
-
     "introduction/roave.html",
-    "introduction/what.md",
-    "introduction/pair.html",
-    "introduction/install.html",
-    "introduction/skeleton.md",
-    "introduction/theory.md"
+    "introduction/thanks.html",
+    "introduction/questions.html"
 ]
