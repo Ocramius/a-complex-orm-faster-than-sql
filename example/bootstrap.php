@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\DBAL\Driver\PDOSqlite\Driver;
 use Doctrine\DBAL\Logging\EchoSQLLogger;
 use Doctrine\ORM\Cache\DefaultCacheFactory;
 use Doctrine\ORM\Cache\RegionsConfiguration;
@@ -32,7 +33,7 @@ $cacheConfig->setCacheFactory(new DefaultCacheFactory(
 
 $entityManager = EntityManager::create(
     [
-        'driverClass' => \Doctrine\DBAL\Driver\PDOSqlite\Driver::class,
+        'driverClass' => Driver::class,
         'path'        => __DIR__ . '/data/test-db.sqlite',
     ],
     $configuration
