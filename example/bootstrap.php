@@ -20,7 +20,7 @@ $configuration->setSQLLogger(new EchoSQLLogger());
 $entityManager = EntityManager::create(
     [
         'driverClass' => \Doctrine\DBAL\Driver\PDOSqlite\Driver::class,
-        'path'        => __DIR__ . '/test-db.sqlite',
+        'path'        => __DIR__ . '/data/test-db.sqlite',
     ],
     $configuration
 );
