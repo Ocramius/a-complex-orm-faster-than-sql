@@ -14,3 +14,5 @@ if (! $car) {
 }
 
 var_dump('Users in Car:', $car->users->toArray());
+
+require __DIR__ . '/show-cache-log.php';

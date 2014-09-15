@@ -17,3 +17,5 @@ $entityManager->persist($car);
 $entityManager->flush();
 
 var_dump('Inserted car:', $car);
+
+require __DIR__ . '/show-cache-log.php';

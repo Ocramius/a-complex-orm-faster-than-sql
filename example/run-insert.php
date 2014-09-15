@@ -13,3 +13,5 @@ $entityManager->persist($user);
 $entityManager->flush();
 
 var_dump('Inserted:', $user);
+
+require __DIR__ . '/show-cache-log.php';
