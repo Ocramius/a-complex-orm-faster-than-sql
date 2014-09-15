@@ -83,9 +83,9 @@
     "caching/second-level-cache/what-is-a-slc.html",
     "caching/second-level-cache/slc-in-modern-computers.html",
     "caching/second-level-cache/slc-in-modern-computers-highlighted.html",
-    "caching/second-level-cache/assumptions.html",
-
+    "caching/second-level-cache/slc-in-doctrine-orm.html",
     "caching/second-level-cache/how-does-the-slc-work.html",
+    "caching/second-level-cache/assumptions.html",
 
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",
