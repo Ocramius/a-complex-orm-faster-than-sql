@@ -1,8 +1,10 @@
 <?php
 
+use Example\User;
+
 $entityManager = require __DIR__ . '/bootstrap.php';
 
-$user = new \Example\User();
+$user = new User();
 
 $user->username = 'Ocramius';
 
