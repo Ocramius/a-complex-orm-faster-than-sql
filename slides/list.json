@@ -91,6 +91,7 @@
     "caching/second-level-cache/cache-modes.html",
     "caching/second-level-cache/cache-regions.html",
     "caching/second-level-cache/demo-time.html",
+    "caching/second-level-cache/awesome-time.html",
 
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",
