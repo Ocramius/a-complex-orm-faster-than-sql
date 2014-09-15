@@ -4,6 +4,7 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
 use Doctrine\ORM\Proxy\ProxyFactory;
+use Doctrine\ORM\Tools\SchemaTool;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -14,11 +15,20 @@ $configuration->setProxyDir(sys_get_temp_dir() . '/example' . uniqid());
 $configuration->setProxyNamespace('ProxyExample');
 $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
 
-return EntityManager::create(
+
+$entityManager = EntityManager::create(
     [
         'driverClass' => \Doctrine\DBAL\Driver\PDOSqlite\Driver::class,
-        'database'    => __DIR__ . '/test-db.sqlite',
+        'path'        => __DIR__ . '/test-db.sqlite',
     ],
     $configuration
 );
+
+$schemaTool = new SchemaTool($entityManager);
+
+$schemaTool->updateSchema(
+    $entityManager->getMetadataFactory()->getAllMetadata()
+);
+
+return $entityManager;
 
