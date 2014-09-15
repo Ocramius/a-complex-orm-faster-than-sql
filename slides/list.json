@@ -60,6 +60,7 @@
     "different-apis/dql.html",
     "different-apis/native-sql.html",
 
+    "rules-of-the-orm/you-also-need-to-know-how-the-orm-operates.html",
     "rules-of-the-orm/orm-hydrates-and-extracts-data.html",
     "rules-of-the-orm/popo-hydration-intro.html",
     "rules-of-the-orm/popo-hydration.html",
