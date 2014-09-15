@@ -80,6 +80,7 @@
 
     "caching/second-level-cache/new-in-doctrine-2.5.html",
     "caching/second-level-cache/super-hot.html",
+    "caching/second-level-cache/why-a-slc.html",
     "caching/second-level-cache/what-is-a-slc.html",
     "caching/second-level-cache/slc-in-modern-computers.html",
     "caching/second-level-cache/slc-in-modern-computers-highlighted.html",
