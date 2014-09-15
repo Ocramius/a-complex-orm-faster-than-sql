@@ -73,6 +73,7 @@
     "caching/4-caches.html",
     "caching/metadata-cache.html",
     "caching/query-cache.html",
+    "caching/result-cache.html",
 
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",

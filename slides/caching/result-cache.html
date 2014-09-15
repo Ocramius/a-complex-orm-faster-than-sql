@@ -1,0 +1,17 @@
+<h2><span class="doctrine-color">Result</span> <span class="zf-color">Cache</span></h2>
+
+<p>Caches <span class="doctrine-color">query results</span>:</p>
+
+<pre><code data-trim>
+$usersCount = $entityManager->createQuery(
+    <<<'DQL'
+SELECT COUNT(u) FROM User u
+'DQL'
+    )
+    ->setResultCacheDriver($redisCache)
+    ->useResultCache(true)
+    ->setResultCacheLifeTime(7200)
+    ->getResult();
+</code></pre>
+
+<p>Cache ID depends on query string and parameters!</p>
