@@ -88,6 +88,7 @@
     "caching/second-level-cache/how-does-the-slc-work.html",
     "caching/second-level-cache/assumptions.html",
     "caching/second-level-cache/setting-up.html",
+    "caching/second-level-cache/cache-modes.html",
 
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",
