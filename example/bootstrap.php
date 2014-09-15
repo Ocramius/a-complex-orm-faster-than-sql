@@ -20,7 +20,6 @@ $configuration->setMetadataDriverImpl(new XmlDriver([__DIR__ . '/mappings']));
 $configuration->setProxyDir(sys_get_temp_dir() . '/example' . uniqid());
 $configuration->setProxyNamespace('ProxyExample');
 $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
-$configuration->setSQLLogger(new EchoSQLLogger());
 
 $configuration->setSecondLevelCacheEnabled();
 
@@ -44,5 +43,7 @@ $schemaTool = new SchemaTool($entityManager);
 $schemaTool->updateSchema(
     $entityManager->getMetadataFactory()->getAllMetadata()
 );
+
+$configuration->setSQLLogger(new EchoSQLLogger());
 
 return $entityManager;
