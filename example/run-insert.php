@@ -10,6 +10,6 @@ $user = new User();
 $user->username = 'Ocramius';
 
 $entityManager->persist($user);
-$entityManager->flush($user);
+$entityManager->flush();
 
 var_dump('Inserted:', $user);
