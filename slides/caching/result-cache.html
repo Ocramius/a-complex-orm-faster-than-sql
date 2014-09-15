@@ -3,11 +3,8 @@
 <p>Caches <span class="doctrine-color">query results</span>:</p>
 
 <pre><code data-trim>
-$usersCount = $entityManager->createQuery(
-    <<<'DQL'
-SELECT COUNT(u) FROM User u
-'DQL'
-    )
+$usersCount = $entityManager
+    ->createQuery('SELECT COUNT(u) FROM User u')
     ->setResultCacheDriver($redisCache)
     ->useResultCache(true)
     ->setResultCacheLifeTime(7200)
