@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\DBAL\Logging\EchoSQLLogger;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
@@ -14,7 +15,7 @@ $configuration->setMetadataDriverImpl(new XmlDriver([__DIR__ . '/mappings']));
 $configuration->setProxyDir(sys_get_temp_dir() . '/example' . uniqid());
 $configuration->setProxyNamespace('ProxyExample');
 $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
-
+$configuration->setSQLLogger(new EchoSQLLogger());
 
 $entityManager = EntityManager::create(
     [
