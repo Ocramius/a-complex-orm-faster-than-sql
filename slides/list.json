@@ -32,6 +32,7 @@
     "orm-api/example-persisting-an-invoice/2-save-user-image.html",
     "orm-api/example-persisting-an-invoice/3-save-invoice-image.html",
     "orm-api/example-persisting-an-invoice/4-save-line-items-image.html",
+    "orm-api/example-persisting-an-invoice/save-an-invoice-manually.html",
     "orm-api/example-persisting-an-invoice/1-save-address.html",
     "orm-api/example-persisting-an-invoice/2-save-user.html",
     "orm-api/example-persisting-an-invoice/3-save-invoice.html",
