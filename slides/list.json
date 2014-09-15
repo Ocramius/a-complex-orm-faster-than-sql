@@ -67,6 +67,7 @@
     "rules-of-the-orm/everything-you-flush-checks-the-entire-uow.html",
     "rules-of-the-orm/everything-you-flush-checks-the-entire-uow-image.html",
     "rules-of-the-orm/only-one-object-per-id-in-memory.html",
+    "rules-of-the-orm/objects-are-in-valid-state.html",
 
     "caching/caching-intro.html",
     "caching/caching-at-the-core-of-design.html",
