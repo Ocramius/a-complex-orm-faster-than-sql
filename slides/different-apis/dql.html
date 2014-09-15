@@ -1,8 +1,7 @@
 <h2><span class="doctrine-color"><abbr title="Doctrine Query Language">DQL</abbr>: Doctrine Query Language</span></h2>
 
 <pre><code data-trim>
-$users = $entityManager->createQuery(
-    <<<'DQL'
+$users = $entityManager->createQuery('
 SELECT
     u
 FROM
@@ -13,8 +12,7 @@ JOIN
     a.city c
 WHERE
     c.name = :cityName
-'DQL'
-    )
+    ')
     ->setParameter('cityName', 'Brno)
     ->getResult();
 </code></pre>
