@@ -74,6 +74,8 @@
     "caching/metadata-cache.html",
     "caching/query-cache.html",
     "caching/result-cache.html",
+    "caching/second-level-cache.html",
+    "caching/second-level-cache-here-be-dragons.html",
 
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",
