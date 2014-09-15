@@ -4,6 +4,7 @@ use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\DBAL\Driver\PDOSqlite\Driver;
 use Doctrine\DBAL\Logging\EchoSQLLogger;
 use Doctrine\ORM\Cache\DefaultCacheFactory;
+use Doctrine\ORM\Cache\Logging\StatisticsCacheLogger;
 use Doctrine\ORM\Cache\RegionsConfiguration;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
@@ -29,6 +30,10 @@ $configuration
         new RegionsConfiguration(),
         $userCache
     ));
+
+$configuration
+    ->getSecondLevelCacheConfiguration()
+    ->setCacheLogger(new StatisticsCacheLogger());
 
 $entityManager = EntityManager::create(
     [
