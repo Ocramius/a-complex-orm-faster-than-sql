@@ -24,12 +24,12 @@ $configuration->setSQLLogger(new EchoSQLLogger());
 
 $configuration->setSecondLevelCacheEnabled();
 
-$cacheConfig = $configuration->getSecondLevelCacheConfiguration();
-
-$cacheConfig->setCacheFactory(new DefaultCacheFactory(
-    new RegionsConfiguration(),
-    $userCache
-));
+$configuration
+    ->getSecondLevelCacheConfiguration()
+    ->setCacheFactory(new DefaultCacheFactory(
+        new RegionsConfiguration(),
+        $userCache
+    ));
 
 $entityManager = EntityManager::create(
     [
