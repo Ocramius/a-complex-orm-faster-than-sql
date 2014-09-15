@@ -5,6 +5,8 @@
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
-        <many-to-many target-entity="Example\User" field="users" />
+        <many-to-many target-entity="Example\User" field="users" >
+            <cache usage="NONSTRICT_READ_WRITE"/>
+        </many-to-many>
     </entity>
 </doctrine-mapping>
