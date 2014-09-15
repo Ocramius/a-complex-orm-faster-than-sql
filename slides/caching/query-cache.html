@@ -1,0 +1,18 @@
+<h2><span class="doctrine-color">Query</span> <span class="zf-color">Cache</span></h2>
+
+<p>Caches <span class="doctrine-color">query</span> generation:</p>
+
+<pre><code data-trim>
+SELECT u FROM Doctrine\Tests\Models\CMS\CmsUser u
+</code></pre>
+
+<pre><code data-trim>
+SELECT
+    c0_.id AS id_0,
+    c0_.status AS status_1,
+    c0_.username AS username_2,
+    c0_.name AS name_3
+FROM cms_users c0_
+</code></pre>
+
+<p>Do not use it with dynamic <span class="doctrine-color">DQL</span>!</p>

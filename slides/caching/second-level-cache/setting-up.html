@@ -1,0 +1,28 @@
+<h2>Setting up the <span class="doctrine-color">SLC</span>:</h2>
+
+<p class="fragment">When setting up the ORM:</p>
+
+<pre class="fragment"><code data-trim>
+$configuration->setSecondLevelCacheEnabled();
+
+$configuration
+    ->getSecondLevelCacheConfiguration()
+    ->setCacheFactory(new DefaultCacheFactory(
+        new RegionsConfiguration(),
+        new RedisCache()
+    ));
+</code></pre>
+
+<p class="fragment">
+    Mark your <span class="doctrine-color">entities</span> as "<span class="doctrine-color">cacheable</span>"
+</p>
+
+<pre class="fragment"><code data-trim>
+/**
+ * @Cache(usage="NONSTRICT_READ_WRITE")
+ */
+class MyEntity
+{
+    // ...
+}
+</code></pre>

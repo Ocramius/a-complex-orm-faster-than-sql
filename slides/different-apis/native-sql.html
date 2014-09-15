@@ -1,0 +1,24 @@
+<h2><span class="doctrine-color">Native SQL</span></h2>
+
+<p>(if all else fails, and you use voodoo)</p>
+
+<pre><code data-trim>
+$query = $entityManager->createNativeQuery(
+    <<<'SQL'
+WITH RECURSIVE t(n) AS (
+    VALUES (1)
+    UNION ALL
+    SELECT n + 1 FROM t WHERE n < 100
+)
+SELECT sum(n) AS foo FROM t;
+'SQL'
+    );
+
+$rsm = new ResultSetMappingBuilder($entityManager);
+
+$rsm->addScalarResult('foo', 'sum');
+$query->setResultSetMapping($rsm);
+
+
+$sum = $query->getResult();
+</code></pre>
