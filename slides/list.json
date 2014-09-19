@@ -95,6 +95,9 @@
     "caching/second-level-cache/demo-time.html",
     "caching/second-level-cache/awesome-time.html",
 
+    "conclusion/conclusion-intro.html",
+    "conclusion/conclusion-doctrine-orm-is-webscale.html",
+
     "bad-examples/bad-examples-recap.html",
     "bad-examples/findall-filtering.html",
     "bad-examples/findall-filtering-facepalm.html",
