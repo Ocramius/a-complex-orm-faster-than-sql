@@ -5,7 +5,7 @@ $users = $entityManager->getRepository('User')->findAll();
 $approvedUsers = array_filter(
     $users,
     function (User $user) {
-        return $user->isApproved();
+        return $user->getEmailVerification()->isApproved();
     }
 );
 </code></pre>
