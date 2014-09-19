@@ -51,8 +51,6 @@
     "orms-are-slow/an-api-for-every-use-case.html",
     "orms-are-slow/drive-nail-with-screwdriver.html",
     "orms-are-slow/php-double-claw.html",
-    "orms-are-slow/context.html",
-    "orms-are-slow/context-oop-api.html",
 
     "different-apis/pure-oop-api.html",
     "different-apis/pure-oop-traversal.html",
