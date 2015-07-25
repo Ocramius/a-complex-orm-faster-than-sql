@@ -1,0 +1,11 @@
+<h2>Bad <span class="doctrine-color">ORM</span> usage:</h2>
+<pre><code data-trim>
+$users = $entityManager->getRepository('User')->findAll();
+
+$approvedUsers = array_filter(
+    $users,
+    function (User $user) {
+        return $user->getEmailVerification()->isApproved();
+    }
+);
+</code></pre>

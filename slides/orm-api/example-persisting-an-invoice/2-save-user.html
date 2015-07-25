@@ -1,0 +1,7 @@
+<h2>2 - save the <span class="zf-color">User</span></h2>
+<pre><code data-trim>
+INSERT INTO user
+(username, name, surname, address_id)
+VALUES
+('Ocramius', 'Marco', 'Pivetta', LAST_INSERT_ID());
+</code></pre>

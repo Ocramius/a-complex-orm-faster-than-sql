@@ -1,0 +1,7 @@
+<h2><span class="doctrine-color">SLC caching modes</span></h2>
+
+<ol>
+    <li><code>READ_ONLY</code> - no updates allowed, good for immutable data</li>
+    <li><code>READ_WRITE</code> - doctrine locks the cache internally, preventing race conditions</li>
+    <li><code>NONSTRICT_READ_WRITE</code> - allows updates, no locking, for sites with rare updates</li>
+</ol>
