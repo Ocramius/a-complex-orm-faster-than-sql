@@ -101,6 +101,7 @@
     "performance-tips/normalization/avoid-composite-identifiers.html",
     "performance-tips/normalization/prefer-uuids-over-db-auto-increment.html",
     "performance-tips/normalization/prefer-append-only-tables.html",
+    "performance-tips/normalization/your-transactional-db-is-not-your-reporting-db.html",
 
     "conclusion/conclusion-intro.html",
     "conclusion/conclusion-doctrine-orm-is-webscale.html",
