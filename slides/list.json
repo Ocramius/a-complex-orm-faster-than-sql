@@ -95,6 +95,8 @@
     "caching/second-level-cache/demo-time.html",
     "caching/second-level-cache/awesome-time.html",
 
+    "performance-tips/a-few-performance-tips.html",
+
     "conclusion/conclusion-intro.html",
     "conclusion/conclusion-doctrine-orm-is-webscale.html",
 
