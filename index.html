@@ -1069,6 +1069,28 @@ class MyEntity
                     
                 
                     
+                        <section><h2>Prefer <span class="doctrine-color">UUIDs</span> over <span class="php-color">auto_increment</span></h2>
+
+<pre><code data-trim>
+class BroadcastMessage
+{
+    private $id;
+    private $content;
+
+    public function __construct(string $text)
+    {
+        $this->id      = Uuid::uuidV4();
+        $this->content = $text;
+    }
+}
+
+</code></pre>
+</section>
+
+                    
+                    
+                
+                    
                         <section><h1>CONCLUSION:</h1>
 </section>
 
