@@ -97,6 +97,8 @@
 
     "performance-tips/a-few-performance-tips.html",
 
+    "performance-tips/normalization/do-not-over-normalize.html",
+
     "conclusion/conclusion-intro.html",
     "conclusion/conclusion-doctrine-orm-is-webscale.html",
 
