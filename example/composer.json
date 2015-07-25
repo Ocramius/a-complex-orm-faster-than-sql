@@ -1,0 +1,11 @@
+{
+    "require": {
+        "doctrine/orm": "dev-master@DEV"
+    },
+    "autoload": {
+        "psr-0": {
+            "Example": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
