@@ -50,7 +50,7 @@
 			text = text.replace( new RegExp('\\n?\\t{' + leadingTabs + '}','g'), '\n' );
 		}
 		else if( leadingWs > 1 ) {
-			text = text.replace( new RegExp('\\n? {' + leadingWs + '}'), '\n' );
+			text = text.replace( new RegExp('\\n? {' + leadingWs + '}','g'), '\n' );
 		}
 
 		return text;
@@ -219,13 +219,12 @@
 
 				xhr.onreadystatechange = function() {
 					if( xhr.readyState === 4 ) {
-						// file protocol yields status code 0 (useful for local debug, mobile applications etc.)
-						if ( ( xhr.status >= 200 && xhr.status < 300 ) || xhr.status === 0 ) {
+						if ( xhr.status >= 200 && xhr.status < 300 ) {
 
 							section.outerHTML = slidify( xhr.responseText, {
 								separator: section.getAttribute( 'data-separator' ),
-								verticalSeparator: section.getAttribute( 'data-separator-vertical' ),
-								notesSeparator: section.getAttribute( 'data-separator-notes' ),
+								verticalSeparator: section.getAttribute( 'data-vertical' ),
+								notesSeparator: section.getAttribute( 'data-notes' ),
 								attributes: getForwardedAttributes( section )
 							});
 
@@ -252,12 +251,12 @@
 				}
 
 			}
-			else if( section.getAttribute( 'data-separator' ) || section.getAttribute( 'data-separator-vertical' ) || section.getAttribute( 'data-separator-notes' ) ) {
+			else if( section.getAttribute( 'data-separator' ) || section.getAttribute( 'data-vertical' ) || section.getAttribute( 'data-notes' ) ) {
 
 				section.outerHTML = slidify( getMarkdownFromSlide( section ), {
 					separator: section.getAttribute( 'data-separator' ),
-					verticalSeparator: section.getAttribute( 'data-separator-vertical' ),
-					notesSeparator: section.getAttribute( 'data-separator-notes' ),
+					verticalSeparator: section.getAttribute( 'data-vertical' ),
+					notesSeparator: section.getAttribute( 'data-notes' ),
 					attributes: getForwardedAttributes( section )
 				});
 

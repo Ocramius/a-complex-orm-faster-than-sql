@@ -6,7 +6,6 @@
 // This file has been copied over from
 // ../../bower_components/reveal.js/css/theme/source/default.scss
 // Default mixins and settings -----------------
-@import "../../bower_components/reveal.js/css/reveal";
 @import "../../bower_components/reveal.js/css/theme/template/mixins";
 @import "../../bower_components/reveal.js/css/theme/template/settings";
 //@import "sky";
@@ -16,8 +15,8 @@
 // Include theme-specific fonts ----------------
 @font-face {
   font-family: 'League Gothic';
-  src: url('/bower_components/reveal.js/lib/font/league_gothic-webfont.eot');
-  src: url('/bower_components/reveal.js/lib/font/league_gothic-webfont.eot?#iefix') format('embedded-opentype'), url('../../lib/font/league_gothic-webfont.woff') format('woff'), url('../../lib/font/league_gothic-webfont.ttf') format('truetype'), url('../../lib/font/league_gothic-webfont.svg#LeagueGothicRegular') format('svg');
+  src: url('../../lib/font/league_gothic-webfont.eot');
+  src: url('../../lib/font/league_gothic-webfont.eot?#iefix') format('embedded-opentype'), url('../../lib/font/league_gothic-webfont.woff') format('woff'), url('../../lib/font/league_gothic-webfont.ttf') format('truetype'), url('../../lib/font/league_gothic-webfont.svg#LeagueGothicRegular') format('svg');
 
   font-weight: normal;
   font-style: normal;
@@ -92,14 +91,6 @@ code {
   color: #FC6A31;
 }
 
-.php-color {
-  color: #6C7EB7;
-}
-
-.proxy-color {
-  color: #FC6A31;
-}
-
 .doctrine-bg {
   background-color: #040E27;
 }
@@ -110,6 +101,11 @@ code {
   box-shadow: 0 0 #000;
 }
 
+.reveal section .avatars img {
+  width: 70px;
+  height: 70px;
+}
+
 .reveal pre {
   width: 100%;
   font-size: 0.68em;
@@ -117,46 +113,4 @@ code {
 
 .reveal pre code {
   max-height: 600px;
-}
-
-section[data-background] [data-background], section[data-background] [data-background-image] {
-  /* hide any elements that actually represent a background */
-  display: none;
-}
-
-.crisp-image {
-  image-rendering: optimizeSpeed;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor;
-}
-
-/* blockquotes: */
-.reveal section blockquote.quote {
-  background: #f9f9f9;
-  border-left: 10px solid #ccc;
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
-  quotes: "\201C""\201D""\2018""\2019";
-}
-
-.reveal section blockquote.quote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-}
-
-.reveal section blockquote.quote p { display: inline; }
-.reveal section blockquote.quote cite:before { content: ' - '; }
-
-.reveal section blockquote.quote cite {
-  display: block;
-  width: 100%;
-  text-align: right;
-  font-size: 20px;
 }

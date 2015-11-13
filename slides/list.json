@@ -84,6 +84,7 @@
     "caching/second-level-cache/super-hot.html",
     "caching/second-level-cache/why-a-slc.html",
     "caching/second-level-cache/what-is-a-slc.html",
+    "caching/second-level-cache/slc-in-modern-computers.html",
     "caching/second-level-cache/slc-in-modern-computers-highlighted.html",
     "caching/second-level-cache/slc-in-doctrine-orm.html",
     "caching/second-level-cache/how-does-the-slc-work.html",
@@ -93,14 +94,6 @@
     "caching/second-level-cache/cache-regions.html",
     "caching/second-level-cache/demo-time.html",
     "caching/second-level-cache/awesome-time.html",
-
-    "performance-tips/a-few-performance-tips.html",
-
-    "performance-tips/normalization/do-not-over-normalize.html",
-    "performance-tips/normalization/avoid-composite-identifiers.html",
-    "performance-tips/normalization/prefer-uuids-over-db-auto-increment.html",
-    "performance-tips/normalization/prefer-append-only-tables.html",
-    "performance-tips/normalization/your-transactional-db-is-not-your-reporting-db.html",
 
     "conclusion/conclusion-intro.html",
     "conclusion/conclusion-doctrine-orm-is-webscale.html",
@@ -115,5 +108,6 @@
 
     "orms-are-slow/orms-dont-kill-your-db-developers-do.html",
 
+    "outro/joindin.html",
     "outro/thanks.html"
 ]

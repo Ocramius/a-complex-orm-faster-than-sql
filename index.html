@@ -2,1207 +2,814 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>A complex ORM, faster than SQL?</title>
-
-        <meta name="description" content="A complex ORM, faster than SQL?">
-        <meta name="author" content="Marco Pivetta">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
+        <title>Doctrine ORM is Webscale</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
         <link rel="stylesheet" href="css/theme.css" id="theme">
-        <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
-
-        <!-- Printing and PDF exports -->
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css" id="highlight-theme">
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
         <script>
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = window.location.search.match(/print-pdf/gi) ? 'bower_components/reveal.js/css/print/pdf.css'
-                : 'bower_components/reveal.js/css/print/paper.css';
-            document.getElementsByTagName('head')[0].appendChild(link);
+          document.write( '<link rel="stylesheet" href="bower_components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
     </head>
     <body>
         <div class="reveal">
             <div class="slides">
                 
                     
-                        <section><img src="images/whiteboard/DSCF4730.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/introduction/hi.html"></section>
 
-                    
-                    
-                
-                    
-                        <section><h2>
-    <img
-        src="images/ocramius.gif"
-        alt="Marco Pivetta"
-        style="width: 70px; margin: 0; image-rendering: -webkit-optimize-contrast; image-rendering: -moz-crisp-edges;"
-    />
-    <a href="http://ocramius.github.com/" target="_blank" rel="me"><span class="doctrine-color">
-        Marco Pivetta
-    </span></a>
-</h2>
-<p>
-    I annoy people on twitter as @<a href="https://twitter.com/Ocramius" class="twitter">Ocramius</a>.
-</p>
-<p>
-    I write dangerous software on  <a href="https://github.com/Ocramius" class="github">Github</a>.
-</p>
-</section>
+
+
+
 
+
+
+    <section data-html="slides/introduction/my-name-is-marco.html"></section>
+
+
                     
                     
                 
                     
-                        <section><img src="images/roave.svg">
+                        
+    <section data-html="slides/introduction/roave.html"></section>
 
-<p class="fragment">
-    <a href="https://github.com/EvanDotPro">
-        <img src="http://www.gravatar.com/avatar/3fb997938a45ac4ea89a90164931368d?s=70&d=mm&r=g" alt="Evan Coury (EvanDotPro)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/TheFrozenFire">
-        <img src="http://www.gravatar.com/avatar/f9c4bcbe0990d74fbf2043602ec1a60d?s=70&d=mm&r=g" alt="Justin Martin (FrozenFire)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/DASPRiD">
-        <img src="http://www.gravatar.com/avatar/c9e618a09b7a872be9376b099b688eda?s=70&d=mm&r=g" alt="Ben Scholzen (DASPRiD)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/asgrim">
-        <img src="http://www.gravatar.com/avatar/3a8d5011c49ac9a7702afd3853f5cc30?s=70&d=mm&r=g" alt="Ben Scholzen (DASPRiD)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/Ocramius">
-        <img src="http://www.gravatar.com/avatar/879d7c8ea365a31443e6b890f68a7d7d?s=70&d=mm&r=g" alt="Marco Pivetta (Ocramius)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/Akrabat">
-        <img src="http://www.gravatar.com/avatar/10e8bec5942c84bf30bcb5af7494f44a?s=70&d=mm&r=g" alt="Rob Allen (Akrabat), Nineteen Feet)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/nclundsten">
-        <img src="http://www.gravatar.com/avatar/816760c449322bb88a02cea027c857ab?s=70&d=mm&r=g" alt="Nigel Lundsten (nlundsten)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/Xerkus">
-        <img src="http://www.gravatar.com/avatar/4f7157a6ccf330bc161b126da934cefe?s=70&d=mm&r=g" alt="Aleksey Khudyakov (Xerkus)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/Spabby">
-        <img src="http://www.gravatar.com/avatar/e61ae7dfad370ba47a72f79418160f51?s=70&d=mm&r=g" alt="Gary Hockin (Spabby / GeeH)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/chartjes">
-        <img src="http://www.gravatar.com/avatar/1abeed132a8a5e46c1435e9872ddb452?s=70&d=mm&r=g" alt="Chris Hartjes (grmpyprogrammer)" style="width: 70px; height: 70px;"/>
-    </a>
-    <img src="http://www.gravatar.com/avatar/8b228094f53356cb826741cc40a01cd6?s=70&d=mm&r=g" alt="Priscilla Hubbard"/>
-    <img src="http://www.gravatar.com/avatar/44e4328250ce6d98d5384c3c1fcd0274?s=70&d=mm&r=g" alt="Chloe"/>
-</p>
-<!--
-<div class="fragment">
-    <p>
-        <marquee>We're awesome!</marquee>
-    </p>
-    <p>(And we love &lt;marquee/&gt;)</p>
-</div>
---></section>
 
                     
                     
                 
                     
-                        <section><h2>I contribute to</h2>
-<p>
-    <a href="http://doctrine-project.org/">
-        <img src="images/doctrine.svg" alt="Doctrine Project" style="width: 20%"/>
-    </a>
-</p>
-<p>
-    <a href="http://framework.zend.com/">
-        <img src="images/zend-framework.png" alt="ZendFramework" style="width: 40%"/>
-    </a>
-</p></section>
-
-                    
-                    
-                
-                    
-                        <section><img src="images/whiteboard/DSCF4733.JPG" data-background-image=""/></section>
-
-                    
-                    
-                
-                    
-                        <section><img src="images/whiteboard/DSCF4737.JPG" data-background-image=""/></section>
-
+                        
+    <section data-html="slides/introduction/i-contribute-to.html"></section>
+
+
                     
                     
                 
                     
-                        <section><img src="images/are-you-fucking-kidding-me.jpg" data-background-image=""/></section>
-
-                    
-                    
-                
-                    
-                        <section><img src="images/troll-face.jpg" data-background-image=""/></section>
-
-                    
-                    
-                
-                    
-                        <section><h2>WTH is <span class="doctrine-color">Doctrine</span>?</h2></section>
-
-                    
-                    
-                
-                    
-                        <section>
-<p>
-    An incubator for <span class="doctrine-color">persistence</span>-oriented libraries
-</p>
-<p>
-    <a href="https://github.com/FabioBatSilva">
-        <img src="https://2.gravatar.com/avatar/847009eb569c152f194f70e2deba99e1?d=https%3A%2F%2Fidenticons.github.com%2F719cf5f30cbd228c68ae742d8159fe4a.png&s=70" alt="Fabio B. Silva (FabioBatSilva)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/Ocramius">
-        <img src="https://2.gravatar.com/avatar/3cf7a8ab0bccee5b65d39b50a170a555?d=https%3A%2F%2Fidenticons.github.com%2F4f1c4fba7ee1878fdf1dbafb8164a229.png&s=70" alt="Marco Pivetta (Ocramius)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/Seldaek">
-        <img src="https://2.gravatar.com/avatar/48b79d17cd8a911327cbd88c122b1efb?d=https%3A%2F%2Fidenticons.github.com%2F616e84e6a0ef22fb49a1722721b05cf5.png&s=70" alt="Jordi Boggiano (Seldaek)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/asm89">
-        <img src="https://1.gravatar.com/avatar/d07a7a143b14fc8309f9abb78d569344?d=https%3A%2F%2Fidenticons.github.com%2Fb94c9a25dc8344a58447d6f32231d15f.png&s=70" alt="Alexander (asm89)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/avalanche123">
-        <img src="https://1.gravatar.com/avatar/f000c9b4dd0656f60de1dc9e75f7386c?d=https%3A%2F%2Fidenticons.github.com%2F0d866018f63b5c0f9b822175e2c5d72c.png&s=70" alt="Bulat Shakirzyanov (avalanche123)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/beberlei">
-        <img src="https://0.gravatar.com/avatar/75f5fb3ddda052e46f1daed314ae69ab?d=https%3A%2F%2Fidenticons.github.com%2F91ab07539b36f85ba8180d74ad2bb3ee.png&s=70" alt="Benjamin Eberlei (beberlei)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/davidino">
-        <img src="https://2.gravatar.com/avatar/14327ba6a017db91465d34f5910df5ab?d=https%3A%2F%2Fidenticons.github.com%2F88226d0c1ff4e5460320b6f0c4364e15.png&s=70" alt="David Funaro (davidino)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/dbu">
-        <img src="https://2.gravatar.com/avatar/c9f4f8ce2c2936bacaf49500b5a127dc?d=https%3A%2F%2Fidenticons.github.com%2F8b3432e34d73182c191e65586b395c06.png&s=70" alt="David Buchmann (dbu)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/fabpot">
-        <img src="https://2.gravatar.com/avatar/f1a2c5905e121d09feba5ad73898ffca?d=https%3A%2F%2Fidenticons.github.com%2Fc84b270aa5893770d53468e5ccd5d512.png&s=70" alt="Fabien Potencier (fabpot)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/golovanov">
-        <img src="https://1.gravatar.com/avatar/fbfe5a0027befc4b766f5fdc4cd530d8?d=https%3A%2F%2Fidenticons.github.com%2F9bd7eb886a09e90a3379136996871272.png&s=70" alt="Igor Golovanov (golovanov)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/guilhermeblanco">
-        <img src="https://2.gravatar.com/avatar/5f258a6128e0e026bf91f7ace0f85967?d=https%3A%2F%2Fidenticons.github.com%2F5d9248548f958594a229f782166a2384.png&s=70" alt="Guilherme Blanco (guilhermeblanco)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/jmikola">
-        <img src="https://2.gravatar.com/avatar/f23700b51dc0c196c1dc02f84aeeecdf?d=https%3A%2F%2Fidenticons.github.com%2F706249dd3fc0b178c58be9f85127d29e.png&s=70" alt="Jeremy Mikola (jmikola)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/jwage">
-        <img src="https://0.gravatar.com/avatar/f76041410752f9019752b6afd2bebc2a?d=https%3A%2F%2Fidenticons.github.com%2F95d7dfd5d3977e78ec60d7a9256e4be7.png&s=70" alt="Jonathan H. Wage (jwage)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/kore">
-        <img src="https://1.gravatar.com/avatar/29225b18371c37ec44c7b8831ea3dae3?d=https%3A%2F%2Fidenticons.github.com%2Fb8d41c3e14a12d9b6cfbfbcf8afa9d26.png&s=70" alt="Kore Nordmann (kore)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/kriswallsmith">
-        <img src="https://0.gravatar.com/avatar/097f39f4cd9a83a03d92c246a2797880?d=https%3A%2F%2Fidenticons.github.com%2F8ace2e1305aac8139dd035e9de3c81fb.png&s=70" alt="Kris Wallsmith (kriswallsmith)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/lsmith77">
-        <img src="https://1.gravatar.com/avatar/54787afbd0e7c30936101c2fa84bd89b?d=https%3A%2F%2Fidenticons.github.com%2F42c2d8d8bce5024ddda1f68cff3bd9cf.png&s=70" alt="Lukas Kahwe Smith (lsmith77)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/naderman">
-        <img src="https://0.gravatar.com/avatar/9f580202b05cc640aa9297ab7a1ae764?d=https%3A%2F%2Fidenticons.github.com%2Fde0db7a0a7eb8bc0075d465f313244c8.png&s=70" alt="Nils Adermann (naderman)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/nrk">
-        <img src="https://0.gravatar.com/avatar/1c29f9b1bf5f1b88ed8b0c9a9be39788?d=https%3A%2F%2Fidenticons.github.com%2F3cdb06e1e8fb85c93740e70f493db646.png&s=70" alt="Daniele Alessandri (nrk)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/odino">
-        <img src="https://0.gravatar.com/avatar/7e1b44a243d0cd4a01e5de1fa41fc0ed?d=https%3A%2F%2Fidenticons.github.com%2Fd1b9fb035de40e6365fcb55a2b8eb437.png&s=70" alt="Alessandro Nadalin (odino)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/richardfullmer">
-        <img src="https://1.gravatar.com/avatar/ae002f3da6a8fb6714653dc49c9284b8?d=https%3A%2F%2Fidenticons.github.com%2Fe3e3672be10bed9e9531781895369a60.png&s=70" alt="Richard Fullmer (richardfullmer)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/rndstr">
-        <img src="https://2.gravatar.com/avatar/20f4b48ecceee43353a1ec364cd0059c?d=https%3A%2F%2Fidenticons.github.com%2F491991572cf97170a77cc98cc908684b.png&s=70" alt="Roland Schilter (rndstr)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/romanb">
-        <img src="https://0.gravatar.com/avatar/a459a18ff578f511412e9b78b1c3a7fb?d=https%3A%2F%2Fidenticons.github.com%2F006c43135a6c5288e27b92e09757cbc2.png&s=70" alt="Roman S. Borschel (romanb)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/schmittjoh">
-        <img src="https://2.gravatar.com/avatar/96a13b96ece78afe3c2dc841edc4a8f5?d=https%3A%2F%2Fidenticons.github.com%2F76ac4dd6d29ba379bc7e819e4dcd5de2.png&s=70" alt="Johannes (schmittjoh)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/stof">
-        <img src="https://1.gravatar.com/avatar/7894bbdf1c05b18a1444ad8c76c9d583?d=https%3A%2F%2Fidenticons.github.com%2Fd339b80a37d1fe7e96192364ab2d75fe.png&s=70" alt="Christophe Coevoet (stof)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/bakura10">
-        <img src="https://0.gravatar.com/avatar/2c3202718f850e5822f31a72b904668e?d=https%3A%2F%2Fidenticons.github.com%2Fb0e559f9c86970d9f05bda45c329845f.png&s=70" alt="Michaël Gallego (bakura10)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/superdweebie">
-        <img src="https://1.gravatar.com/avatar/0e30326b099b71f27a3722e10fd66ce4?d=https%3A%2F%2Fidenticons.github.com%2F46076c37f8ae4abeb1f4cdbe0af8d882.png&s=70" alt="Tim Roediger (superdweebie)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/spiffyjr">
-        <img src="https://1.gravatar.com/avatar/a5408ecd6ed3688802ef096bbd002a80?d=https%3A%2F%2Fidenticons.github.com%2F5366f6ddfc256a9716b68978dc0fae59.png&s=70" alt="Kyle Spraggs (spiffyjr)" style="width: 70px; height: 70px;"/>
-    </a>
-    <a href="https://github.com/deeky666">
-        <img src="https://2.gravatar.com/avatar/ab370d20686fd46b478e6bcb8de81161?d=https%3A%2F%2Fidenticons.github.com%2Fb6c7bc94df5859dcdaa08f86a865c905.png&s=70" alt="Steve Müller (deeky666)" style="width: 70px; height: 70px;"/>
-    </a>
-</p>
-</section>
+                        
+    <section data-html="slides/introduction/thanks.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>WTH is <span class="doctrine-color">Doctrine 2 ORM</span>?</h2></section>
+                        
+    <section data-html="slides/introduction/questions.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>
-    <span class="doctrine-color">
-        Object
-        <br/>
-        Relational
-        <br/>
-        Mapper
-    </span>
-</h2>
-
-<p class="fragment">
-    Inspired by
-    <span class="zf-color">Hibernate</span>
-    and the
-    <abbr title="Java Persistece API" class="zf-color">JPA</abbr>
-    (JSR-317)
-</p>
-
-<p class="fragment">
-    Based on a
-    <abbr title="Database Abstraction Layer" class="doctrine-color">DBAL</abbr>
-    (DataBase Abstraction Layer)
-</p>
+                        
+    <section data-html="slides/introduction/are-you-fucking-kidding-me.html"></section>
 
-<p class="fragment">
-    Saves/Loads
-    <abbr title="Plain Old PHP Object" class="doctrine-color">POPO</abbr>
-    through an
-    <span class="zf-color">SQL RDBMS</span>
-</p></section>
 
                     
                     
                 
                     
-                        <section><h2>What is a <abbr title="Plain Old PHP Object" class="doctrine-color">POPO</abbr>?</h2></section>
+                        
+    <section data-html="slides/introduction/just-kidding.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4743.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/doctrine-project/wth-is-doctrine.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4746.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/doctrine-project/doctrine-project.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4749.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/doctrine-project/wth-is-doctrine-orm.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4751-deal-with-it.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/doctrine-project/doctrine-2-orm.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/doctrine-deals-with-it.png" data-background-image=""/></section>
+                        
+    <section data-html="slides/designing-with-the-orm/popo.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">POPO</span> <strong>enable</strong> <span class="zf-color">DDD</span></h2>
+                        
+    <section data-html="slides/designing-with-the-orm/popo-explained.html"></section>
 
-<p class="fragment">
-    As long as your
-    <span class="zf-color">domain logic</span>
-    is free from
-    <strong>dependencies</strong>, you can model it as you prefer
-</p>
 
-<p class="fragment">
-    You don't really need <span class="doctrine-color">Doctrine ORM</span> for that, but it helps.
-</p>
-</section>
-
                     
                     
                 
                     
-                        <section><h2>Not a talk about <span class="zf-color">DDD</span></h2></section>
+                        
+    <section data-html="slides/designing-with-the-orm/popo-domain.html"></section>
+
 
                     
                     
                 
                     
-                        <section><p>
-    If you want more of this, check <a href="http://DDDinPHP.org/" target="_blank">DDDinPHP</a>!
-</p>
-</section>
+                        
+    <section data-html="slides/designing-with-the-orm/popo-domain-is-yours.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>Using the ORM's <span class="doctrine-color">EntityManager</span></h2></section>
+                        
+    <section data-html="slides/designing-with-the-orm/popo-domain-deal-with-it.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4755.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/designing-with-the-orm/popo-doctrine2-deals-with-it.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>Persisting an <span class="zf-color">Invoice</span></h2></section>
+                        
+    <section data-html="slides/designing-with-the-orm/popo-enables-ddd.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4757.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/designing-with-the-orm/not-a-ddd-talk.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>Requires precise order of operations!</h2></section>
+                        
+    <section data-html="slides/designing-with-the-orm/more-on-ddd.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4762.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/orm-api/entity-manager-api.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4763.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/orm-api/entity-manager-api-pictured.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4766.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/persisting-an-invoice.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4769.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/invoice-data-structure.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>COMPLICATED!</h2>
-</section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/persisting-an-invoice-order.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>1 - save the <span class="zf-color">Address</span></h2>
-<pre><code data-trim>
-INSERT INTO address
-(street, city, zip, country)
-VALUES
-('Bornstraße 3', 'Usingen', '61250', 'DE');
-</code></pre></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/1-save-address-image.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>2 - save the <span class="zf-color">User</span></h2>
-<pre><code data-trim>
-INSERT INTO user
-(username, name, surname, address_id)
-VALUES
-('Ocramius', 'Marco', 'Pivetta', LAST_INSERT_ID());
-</code></pre></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/2-save-user-image.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>3 - save the <span class="zf-color">Invoice</span></h2>
-<pre><code data-trim>
-INSERT INTO invoice
-(created, user_id)
-VALUES
-(NOW(), LAST_INSERT_ID());
-</code></pre></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/3-save-invoice-image.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>4 - save the <span class="zf-color">Line Items</span></h2>
-<pre><code data-trim>
-SET @invoice_id = LAST_INSERT_ID();
-INSERT INTO line_item
-(invoice_id, product_id)
-VALUES
-(@invoice_id, 123),
-(@invoice_id, 456);
-</code></pre></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/4-save-line-items-image.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>Operation Order = <strong>bugs</strong>!</h2></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/save-an-invoice-manually.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>Saving an Invoice with the <span class="doctrine-color">ORM</span></h2>
-<pre><code data-trim>
-$user = new User(
-    'Ocramius',
-    'Marco',
-    'Pivetta',
-    new Address('Bornstraße 3', 'Usingen', '61250', 'DE')
-);
-
-$product1 = $entityManager->find('Product', 123);
-$product2 = $entityManager->find('Product', 456);
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/1-save-address.html"></section>
 
-$invoice = new Invoice($user, [
-    new LineItem($product1),
-    new LineItem($product2)
-]);
 
-$entityManager->persist($invoice);
-$entityManager->flush();
-</code></pre></section>
-
                     
                     
                 
                     
-                        <section><h2>The <span class="doctrine-color">ORM</span> is also transactional</h2>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/2-save-user.html"></section>
 
-<p class="fragment">
-    Calling <strong class="doctrine-color">Doctrine\ORM\EntityManager#flush()</strong> with invalid
-    data causes a <strong class="zf-color">ROLLBACK</strong> and an exception.
-</p></section>
 
                     
                     
                 
                     
-                        <section><h1><span class="doctrine-color">ORMs</span> are cool, but...</h1></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/3-save-invoice.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h1><span class="doctrine-color">ORMs</span> are <strong>SLOW</strong></h1></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/4-save-line-items.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/there-ive-said-it.gif" data-background-image=""/></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/order-of-operations-leads-to-bugs.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/are-orms-slow-or-do-developers-not-rtfm.png" data-background-image=""/></section>
+                        
+    <section data-html="slides/orm-api/example-persisting-an-invoice/with-the-orm.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">Abstraction</span> <strong>costs</strong></h2>
+                        
+    <section data-html="slides/orm-api/transaction-safety.html"></section>
 
-<p class="fragment">
-    It's pretty much always at the <span class="zf-color">Performance</span> cost.
-</p></section>
 
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">ORMs</span> are (typically) <span class="zf-color">leaky abstractions</span></h2></section>
+                        
+    <section data-html="slides/orms-are-slow/orms-are-cool-but.html"></section>
 
+
                     
                     
                 
                     
-                        <section><blockquote>
-    Systems like Hibernate are intentionally designed as "leaky abstractions" so that it's possible to easily
-    mix in native SQL where necessary.
-    <footer>
-        <cite>
-            <a href="http://www.reddit.com/r/programming/comments/2cnw8x/what_orms_have_taught_me_just_learn_sql/cjheyec">
-                Gavin King
-            </a>
-        </cite>
-    </footer>
-</blockquote></section>
+                        
+    <section data-html="slides/orms-are-slow/orms-are-slow.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>An API for every use-case</h2>
+                        
+    <section data-html="slides/orms-are-slow/there-i-said-it.html"></section>
 
-<p class="fragment">Why hit screws with a hammer?</p>
-<p class="fragment">Why use nails with a screwdriver?</p></section>
 
                     
                     
                 
                     
-                        <section><img src="images/driving-a-nail-with-screwdriver.jpg"/></section>
+                        
+    <section data-html="slides/orms-are-slow/or-are-the-developers-not-rtfm.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/php-double-claw.jpg" data-background-image=""/></section>
+                        
+    <section data-html="slides/orms-are-slow/abstraction-comes-at-a-cost.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>Pure <span class="doctrine-color">OOP API</span></h2>
+                        
+    <section data-html="slides/orms-are-slow/orms-are-leaky-abstractions.html"></section>
 
-<pre><code data-trim>
-$user = $entityManager->find('User', 123);
 
-$entityManager->remove($user);
-$entityManager->persist($thing);
-
-$entityManager->flush();
-</code></pre>
-
-<pre><code data-trim>
-$user        = $repository->find(123);
-$activeUsers = $repository->findBy(['active' => true]);
-</code></pre>
-</section>
-
                     
                     
                 
                     
-                        <section><h2>Pure <span class="doctrine-color">OOP</span> <span class="zf-color">graph Traversal</span></h2>
-
-<pre><code data-trim>
-$user = $entityManager->find('User', 123);
+                        
+    <section data-html="slides/orms-are-slow/orms-are-leaky-abstractions-quote.html"></section>
 
-$city = $user->getAddress()->getCity();
-</code></pre>
-</section>
 
                     
                     
                 
                     
-                        <section><h2>Criteria <span class="doctrine-color">API</span></h2>
+                        
+    <section data-html="slides/orms-are-slow/an-api-for-every-use-case.html"></section>
 
-<pre><code data-trim>
-$adultBirthDate = new DateTime('-18 years');
 
-$adultsCriteria = new Doctrine\Common\Collections\Criteria();
-
-$adultsCriteria->andWhere(
-    $criteria->expr()->lte('birthDate', $adultBirthDate)
-);
-
-$adults = $repository->matching($criteria);
-</code></pre>
-</section>
-
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color"><abbr title="Doctrine Query Language">DQL</abbr>: Doctrine Query Language</span></h2>
+                        
+    <section data-html="slides/orms-are-slow/drive-nail-with-screwdriver.html"></section>
 
-<pre><code data-trim>
-$users = $entityManager->createQuery('
-SELECT
-    u
-FROM
-    Users u
-JOIN
-    u.address a
-JOIN
-    a.city c
-WHERE
-    c.name = :cityName
-    ')
-    ->setParameter('cityName', 'Brno)
-    ->getResult();
-</code></pre>
-</section>
 
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">Native SQL</span></h2>
-
-<p>(if all else fails, and you use voodoo)</p>
+                        
+    <section data-html="slides/orms-are-slow/php-double-claw.html"></section>
 
-<pre><code data-trim>
-$query = $entityManager->createNativeQuery(
-    <<<'SQL'
-WITH RECURSIVE t(n) AS (
-    VALUES (1)
-    UNION ALL
-    SELECT n + 1 FROM t WHERE n < 100
-)
-SELECT sum(n) AS foo FROM t;
-'SQL'
-    );
 
-$rsm = new ResultSetMappingBuilder($entityManager);
-
-$rsm->addScalarResult('foo', 'sum');
-$query->setResultSetMapping($rsm);
-
-
-$sum = $query->getResult();
-</code></pre>
-</section>
-
                     
                     
                 
                     
-                        <section><h2>Some <span class="doctrine-color">ORM</span> internals knowledge needed!</h2>
-</section>
+                        
+    <section data-html="slides/different-apis/pure-oop-api.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>The <span class="doctrine-color">ORM</span> <span class="zf-color">Hydrates</span> and <span class="zf-color">Extracts</span> data</h2></section>
+                        
+    <section data-html="slides/different-apis/pure-oop-traversal.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h1><span class="doctrine-color">Hydration</span></h1></section>
+                        
+    <section data-html="slides/different-apis/criteria-api.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4773.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/different-apis/dql.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h1><span class="doctrine-color">Extraction</span></h1></section>
+                        
+    <section data-html="slides/different-apis/native-sql.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4776.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/rules-of-the-orm/you-also-need-to-know-how-the-orm-operates.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>
-    Everything you read from <span class="zf-color">DB</span> is kept in <span class="doctrine-color">memory</span>
-</h2>
-</section>
+                        
+    <section data-html="slides/rules-of-the-orm/orm-hydrates-and-extracts-data.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4779.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/rules-of-the-orm/popo-hydration-intro.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>Flushing is expensive!</h2>
-<p>
-    When you call
-    <span class="doctrine-color">EntityManager#flush()</span>,
-    the
-    <span class="doctrine-color">UnitOfWork</span>
-    is iterated!
-</p>
-</section>
+                        
+    <section data-html="slides/rules-of-the-orm/popo-hydration.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/container-ship.jpg" data-background-image=""/></section>
+                        
+    <section data-html="slides/rules-of-the-orm/popo-extraction-intro.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>Only 1 object per ID in memory</h2>
+                        
+    <section data-html="slides/rules-of-the-orm/popo-extraction.html"></section>
 
-<p>
-    You can avoid a lot of queries!
-</p>
-</section>
 
                     
                     
                 
                     
-                        <section><h2>Objects must be in a <span class="doctrine-color">valid state</span></h2>
-</section>
+                        
+    <section data-html="slides/rules-of-the-orm/everything-you-load-is-kept-in-memory.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h1><span class="doctrine-color">Caching</span></h1>
-</section>
+                        
+    <section data-html="slides/rules-of-the-orm/everything-you-load-is-kept-in-memory-image.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>
-    <span class="zf-color">Caching</span> is at the core of the <span class="doctrine-color">ORM architecture</span>
-</h2>
-</section>
+                        
+    <section data-html="slides/rules-of-the-orm/everything-you-flush-checks-the-entire-uow.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">Doctrine ORM</span> has 4 <span class="zf-color">caches</span></h2>
-</section>
+                        
+    <section data-html="slides/rules-of-the-orm/everything-you-flush-checks-the-entire-uow-image.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">Metadata</span> <span class="zf-color">Cache</span></h2>
-
-<p>You <strong>need</strong> this in production!</p>
+                        
+    <section data-html="slides/rules-of-the-orm/only-one-object-per-id-in-memory.html"></section>
 
-<p>Caches <span class="doctrine-color">ORM</span> bootstrapping information</p>
-</section>
 
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">Query</span> <span class="zf-color">Cache</span></h2>
-
-<p>Caches <span class="doctrine-color">query</span> generation:</p>
-
-<pre><code data-trim>
-SELECT u FROM Doctrine\Tests\Models\CMS\CmsUser u
-</code></pre>
+                        
+    <section data-html="slides/rules-of-the-orm/objects-are-in-valid-state.html"></section>
 
-<pre><code data-trim>
-SELECT
-    c0_.id AS id_0,
-    c0_.status AS status_1,
-    c0_.username AS username_2,
-    c0_.name AS name_3
-FROM cms_users c0_
-</code></pre>
 
-<p>Do not use it with dynamic <span class="doctrine-color">DQL</span>!</p>
-</section>
-
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">Result</span> <span class="zf-color">Cache</span></h2>
-
-<p>Caches <span class="doctrine-color">query results</span>:</p>
+                        
+    <section data-html="slides/caching/caching-intro.html"></section>
 
-<pre><code data-trim>
-$usersCount = $entityManager
-    ->createQuery('SELECT COUNT(u) FROM User u')
-    ->setResultCacheDriver($redisCache)
-    ->useResultCache(true)
-    ->setResultCacheLifeTime(7200)
-    ->getResult();
-</code></pre>
 
-<p>Cache ID depends on query string and parameters!</p>
-</section>
-
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">Second Level</span> <span class="zf-color">Cache</span></h2>
+                        
+    <section data-html="slides/caching/caching-at-the-core-of-design.html"></section>
 
-<p>Also called <span class="doctrine-color">SLC</span> or <span class="doctrine-color">L2 Cache</span></p>
-</section>
 
                     
                     
                 
                     
-                        <section><img src="images/here-be-dragons.jpg" data-background-image=""/></section>
+                        
+    <section data-html="slides/caching/4-caches.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>New as of <span class="doctrine-color">Doctrine ORM <strong>2.5</strong></span></h2>
-</section>
+                        
+    <section data-html="slides/caching/metadata-cache.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/super-hot.gif" data-background-image=""/></section>
+                        
+    <section data-html="slides/caching/query-cache.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>Why the <span class="doctrine-color">SLC</span>?</h2>
-
-<p>
-    <span class="zf-color">SQL RDBMS</span>
-    are slow at executing simple fetches
-</p>
-
-<pre><code data-trim>
-SELECT * FROM articles WHERE id = :id
-</code></pre>
+                        
+    <section data-html="slides/caching/result-cache.html"></section>
 
-<p class="fragment">
-    That's part of why
-    <span class="zf-color">MongoDB</span>,
-    <span class="zf-color">CouchDB</span>
-    and other
-    <span class="zf-color">NoSQL DBs</span>
-    are very successful!
-</p>
-</section>
 
                     
                     
                 
                     
-                        <section><h2>What is a <span class="doctrine-color">L2 Cache</span>?</h2>
-</section>
+                        
+    <section data-html="slides/caching/second-level-cache.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4786.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/caching/second-level-cache-here-be-dragons.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/whiteboard/DSCF4789.JPG" data-background-image=""/></section>
+                        
+    <section data-html="slides/caching/second-level-cache/new-in-doctrine-2.5.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>How does the <span class="doctrine-color">SLC</span> work?</h2>
+                        
+    <section data-html="slides/caching/second-level-cache/super-hot.html"></section>
 
-<p class="fragment">
-    Saves
-    <span class="doctrine-color">entity state</span>
-    in the
-    <span class="zf-color">DB</span>
-    and in the
-    <span class="zf-color">Cache</span>
-</p>
 
-<p class="fragment">
-    Tries to load <span class="doctrine-color">entities</span> from <span class="zf-color">cache</span> first
-</p>
-</section>
-
                     
                     
                 
                     
-                        <section><h2>Assumptions:</h2>
-
-<p>Only the <span class="doctrine-color">ORM</span> writes to <span class="zf-color">DB</span></p>
+                        
+    <section data-html="slides/caching/second-level-cache/why-a-slc.html"></section>
 
-<p>Inserts and updates handled by <span class="doctrine-color">EntityManager#flush()</span></p>
-</section>
 
                     
                     
                 
                     
-                        <section><h2>Setting up the <span class="doctrine-color">SLC</span>:</h2>
-
-<p class="fragment">When setting up the ORM:</p>
-
-<pre class="fragment"><code data-trim>
-$configuration->setSecondLevelCacheEnabled();
+                        
+    <section data-html="slides/caching/second-level-cache/what-is-a-slc.html"></section>
 
-$configuration
-    ->getSecondLevelCacheConfiguration()
-    ->setCacheFactory(new DefaultCacheFactory(
-        new RegionsConfiguration(),
-        new RedisCache()
-    ));
-</code></pre>
 
-<p class="fragment">
-    Mark your <span class="doctrine-color">entities</span> as "<span class="doctrine-color">cacheable</span>"
-</p>
-
-<pre class="fragment"><code data-trim>
-/**
- * @Cache(usage="NONSTRICT_READ_WRITE")
- */
-class MyEntity
-{
-    // ...
-}
-</code></pre></section>
-
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">SLC caching modes</span></h2>
+                        
+    <section data-html="slides/caching/second-level-cache/slc-in-modern-computers.html"></section>
 
-<ol>
-    <li><code>READ_ONLY</code> - no updates allowed, good for immutable data</li>
-    <li><code>READ_WRITE</code> - doctrine locks the cache internally, preventing race conditions</li>
-    <li><code>NONSTRICT_READ_WRITE</code> - allows updates, no locking, for sites with rare updates</li>
-</ol>
-</section>
 
                     
                     
                 
                     
-                        <section><h2><span class="doctrine-color">SLC regions</span></h2>
+                        
+    <section data-html="slides/caching/second-level-cache/slc-in-modern-computers-highlighted.html"></section>
 
-<p class="fragment">
-    Very useful when different data types require different cache backends
-</p>
-</section>
 
                     
                     
                 
                     
-                        <section><h1><span class="doctrine-color">DEMO</span> TIME!</h1></section>
+                        
+    <section data-html="slides/caching/second-level-cache/slc-in-doctrine-orm.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h1><span class="doctrine-color">AWESOME</span>, HUH?</h1></section>
+                        
+    <section data-html="slides/caching/second-level-cache/how-does-the-slc-work.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>A few <span class="zf-color">Performance</span> tips</h2>
-</section>
+                        
+    <section data-html="slides/caching/second-level-cache/assumptions.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>Do not <strong class="php-color">over-normalize</strong></h2>
+                        
+    <section data-html="slides/caching/second-level-cache/setting-up.html"></section>
 
-<p class="fragment">
-    Design your entities for what they need to do, not for
-    how you want to query them
-</p>
-</section>
 
                     
                     
                 
                     
-                        <section><h2>Avoid <span class="php-color">Composite identifiers</span></h2>
+                        
+    <section data-html="slides/caching/second-level-cache/cache-modes.html"></section>
 
-<p class="fragment">
-    They don't bring any real advantage
-</p>
-</section>
 
                     
                     
                 
                     
-                        <section><h2>Prefer <span class="doctrine-color">UUIDs</span> over <span class="php-color">auto_increment</span></h2>
-
-<pre><code data-trim>
-class BroadcastMessage
-{
-    private $id;
-    private $content;
+                        
+    <section data-html="slides/caching/second-level-cache/cache-regions.html"></section>
 
-    public function __construct(string $text)
-    {
-        $this->id      = Uuid::uuidV4();
-        $this->content = $text;
-    }
-}
 
-</code></pre>
-</section>
-
                     
                     
                 
                     
-                        <section><h2>Prefer <span class="doctrine-color">append-only</span> tables</h2>
+                        
+    <section data-html="slides/caching/second-level-cache/demo-time.html"></section>
 
-<p class="fragment"><strong class="doctrine-color">Immutable Data</strong> = <strong class="zf-color">Infinite Caching</strong></p></section>
 
                     
                     
                 
                     
-                        <section><h2>
-    Your
-    <span class="doctrine-color">Transactional DB</span>
-    is
-    <strong>NOT</strong>
-    your
-    <span class="php-color">Reporting DB</span>
-</h2>
+                        
+    <section data-html="slides/caching/second-level-cache/awesome-time.html"></section>
 
-<p class="fragment"><strong>Stop</strong> thinking that everything should be in a single DB!</p>
-</section>
 
                     
                     
                 
                     
-                        <section><h1>CONCLUSION:</h1>
-</section>
+                        
+    <section data-html="slides/conclusion/conclusion-intro.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/doge-webscale.png" data-background-image=""/>
-</section>
+                        
+    <section data-html="slides/conclusion/conclusion-doctrine-orm-is-webscale.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>You saw the <span class="doctrine-color">tools</span>, so please, <strong>don't do this</strong>:</h2>
-</section>
+                        
+    <section data-html="slides/bad-examples/bad-examples-recap.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>Bad <span class="doctrine-color">ORM</span> usage:</h2>
-<pre><code data-trim>
-$users = $entityManager->getRepository('User')->findAll();
+                        
+    <section data-html="slides/bad-examples/findall-filtering.html"></section>
 
-$approvedUsers = array_filter(
-    $users,
-    function (User $user) {
-        return $user->getEmailVerification()->isApproved();
-    }
-);
-</code></pre></section>
 
                     
                     
                 
                     
-                        <section><img src="images/epic-facepalm.png" data-background-image=""/></section>
+                        
+    <section data-html="slides/bad-examples/findall-filtering-facepalm.html"></section>
+
 
                     
                     
                 
                     
-                        <section><img src="images/firefighters-rails-wat.jpg" data-background-image=""/></section>
+                        
+    <section data-html="slides/bad-examples/findall-filtering-does-not-work.html"></section>
 
+
                     
                     
                 
                     
-                        <section><img src="images/you-had-one-job-toilet.jpg" data-background-image=""/></section>
+                        
+    <section data-html="slides/bad-examples/findall-filtering-you-had-one-job.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>Know the tool, and how to use it</h2>
-</section>
+                        
+    <section data-html="slides/bad-examples/bad-examples-know-the-tool.html"></section>
 
+
                     
                     
                 
                     
-                        <section><h2>Also know when to <strong>not</strong> use an <span class="doctrine-color">ORM</span></h2>
+                        
+    <section data-html="slides/bad-examples/bad-examples-know-when-not-to-use-the-tool.html"></section>
 
-<ul class="fragment">
-    <li>Reporting</li>
-    <li>Dealing with huge amounts of data</li>
-    <li>Dealing with dynamic data types in the schema</li>
-</ul></section>
 
                     
                     
                 
                     
-                        <section><blockquote>
-    ORMs don't kill your DB: developers do
-    <footer>
-        <cite>
-            <a href="http://www.slideshare.net/guilhermeblanco/orm-dont-kill-your-db-developers-do" target="_blank">
-                Guilherme Blanco
-            </a>
-        </cite>
-    </footer>
-</blockquote>
-</section>
+                        
+    <section data-html="slides/orms-are-slow/orms-dont-kill-your-db-developers-do.html"></section>
+
 
                     
                     
                 
                     
-                        <section><h2>Thanks for listening!</h2>
-<p>
-    <a href="https://twitter.com/Ocramius" target="_blank">@Ocramius</a>
-</p></section>
+                        
+    <section data-html="slides/outro/joindin.html"></section>
+
+
+
+
+
+
+
+    <section data-html="slides/outro/thanks.html"></section>
+
 
                     
                     
@@ -1210,43 +817,33 @@ $approvedUsers = array_filter(
             </div>
         </div>
         <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
-        <script src="bower_components/reveal.js/js/reveal.js"></script>
-
+        <script src="bower_components/reveal.js/js/reveal.min.js"></script>
         <script>
+            // Configure Reveal
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
-                controls:     true,
-                progress:     true,
-                history:      true,
-                center:       true,
-                transition:   'none',
-                // Optional reveal.js plugins
+                controls: false,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+                transitionSpeed: 'fast',
+
+                // Optional libraries used to extend on reveal.js
                 dependencies: [
-                    {
-                        src: 'bower_components/reveal.js/lib/js/classList.js',
-                        condition: function() { return !document.body.classList; }
-                    },
-                    {
-                        src: 'bower_components/reveal.js/plugin/markdown/marked.js',
-                        condition: function() { return !!document.querySelector( '[data-markdown]' ); }
-                    },
-                    {
-                        src: 'bower_components/reveal.js/plugin/markdown/markdown.js',
-                        condition: function() { return !!document.querySelector( '[data-markdown]' ); }
-                    },
-                    {
-                        src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
-                        async: true,
-                        condition: function() { return !!document.querySelector( 'pre code' ); },
-                        callback: function() { hljs.initHighlightingOnLoad(); }
-                    },
-                    {
-                        src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js',
-                        async: true
-                    },
-                    {
-                        src: 'bower_components/reveal.js/plugin/notes/notes.js',
-                        async: true
-                    }
+                    { src: 'bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    // { src: 'bower_components/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    //{ src: 'bower_components/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+
+                    { src: 'js/loadhtmlslides.js', condition: function() { return !!document.querySelector( '[data-html]' ); } }
                 ]
             });
         </script>

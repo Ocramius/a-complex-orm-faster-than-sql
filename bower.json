@@ -1,7 +1,7 @@
 {
-  "name": "ShittyCQRS explained",
+  "name": "zf2-from-n00b-to-pro",
   "version": "1.0.0",
   "dependencies": {
-    "reveal.js": "~3.0.0"
+    "reveal.js": "~2.6.1"
   }
 }

@@ -10,21 +10,17 @@ module.exports = (grunt) ->
                     livereload: true
                 files: [
                     'index.html'
-                    'assets/*'
-                    'assets/**/*'
-                    'slides/*'
-                    'slides/**/.html'
-                    'slides/**/.md'
+                    'slides/**/*.md'
+                    'slides/**/*.html'
                     'js/*.js'
                     'css/*.css'
                 ]
 
             index:
                 files: [
-                    'templates/*'
+                    'templates/_index.html'
+                    'templates/_section.html'
                     'slides/list.json'
-                    'slides/*'
-                    'slides/**/*.html'
                 ]
                 tasks: ['buildIndex']
 
@@ -35,7 +31,7 @@ module.exports = (grunt) ->
             jshint:
                 files: ['js/*.js']
                 tasks: ['jshint']
-
+        
             sass:
                 files: ['css/source/theme.scss']
                 tasks: ['sass']
@@ -45,7 +41,7 @@ module.exports = (grunt) ->
             theme:
                 files:
                     'css/theme.css': 'css/source/theme.scss'
-
+        
         connect:
 
             livereload:
@@ -100,31 +96,16 @@ module.exports = (grunt) ->
         'Build index.html from templates/_index.html and slides/list.json.',
         ->
             indexTemplate = grunt.file.read 'templates/_index.html'
-            sectionTemplate = grunt.file.read 'templates/_slide.html'
-
-            importSlides = (slide) ->
-                if "array" == grunt.util.kindOf(slide)
-                    (importSlides(singleSlide) for singleSlide in slide)
-                else if "string" == grunt.util.kindOf(slide)
-                    contents:   grunt.file.read('slides/' + slide)
-                    background: null
-                else if slide.path
-                    contents:   grunt.file.read('slides/' + slide.path)
-                    background: slide.background
-                else
-                    contents:   null
-                    background: slide.background
-
+            sectionTemplate = grunt.file.read 'templates/_section.html'
+            slides = grunt.file.readJSON 'slides/list.json'
 
             html = grunt.template.process indexTemplate, data:
                 slides:
-                    importSlides(grunt.file.readJSON 'slides/list.json')
+                    slides
                 section: (slide) ->
                     grunt.template.process sectionTemplate, data:
-                        slide:      slide
-                        contents:   slide.contents
-                        background: slide.background
-
+                        slide:
+                            slide
             grunt.file.write 'index.html', html
 
     grunt.registerTask 'test',
